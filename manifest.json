@@ -3,6 +3,9 @@
     "description": "no empty history",
     "version": "1.0",
     "manifest_version": 3,
+    "permissions": [
+        "history"
+    ], 
     "action": {
         "default_popup": "view.html",
         "default_icon": "icon.png"
