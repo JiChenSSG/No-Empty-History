@@ -1,11 +1,9 @@
-/* global chrome */
-
-var history = []
+var historys = []
 
 chrome.history.search({ text: '' }, function (historyItems) {
     for (var i = 0; i < historyItems.length; i++) {
         var item = historyItems[i]
-        history.push({
+        historys.push({
             url: item.url,
             title: item.title,
             lastVisitTime: item.lastVisitTime,
@@ -14,4 +12,4 @@ chrome.history.search({ text: '' }, function (historyItems) {
     }
 })
 
-console.log(history)
+console.log(historys)
