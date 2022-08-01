@@ -7,9 +7,21 @@
         "history",
         "sessions",
         "storage"
-    ], 
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
     "action": {
-        "default_popup": "view.html",
+        "default_popup": "main.html",
         "default_icon": "icon.png"
     },
     "background": {
