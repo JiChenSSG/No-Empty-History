@@ -43,7 +43,6 @@ function getUrl() {
     var res
 
     storage.sync.get(['urlData'], function (result) {
-        console.log(result)
         res = result['urlData']
     })
 

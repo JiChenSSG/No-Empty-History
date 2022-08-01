@@ -11,13 +11,12 @@
     "content_scripts": [
         {
             "matches": [
-                "http://*/*",
-                "https://*/*"
+                "<all_urls>"
             ],
             "js": [
+                "lib/jquery.js",
                 "content.js"
-            ],
-            "run_at": "document_start"
+            ]
         }
     ],
     "action": {
