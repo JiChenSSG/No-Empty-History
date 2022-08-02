@@ -1,3 +1,13 @@
+var urlData
+
+chrome.runtime.sendMessage({
+    type: 'getUrl'
+}, res => {
+    urlData = res.urlData
+})
+
+console.log()
+
 $("body").prepend("<div id='content'></div>");
 
 $("#content").css({
@@ -53,6 +63,14 @@ $("#content-change-pic").css({
     "background": "url(https://jichen-main.oss-cn-shanghai.aliyuncs.com/yes_cb220030.png) no-repeat center",
 })
 
+$("#content-change").on("click", function () {
+    chrome.runtime.sendMessage({
+        type: 'addUrl',
+        url: window.location.href
+    }, res => {
+        console.log('success')
+    })
+})
 
 $("#content").append("<div id='content-edit'></div>");
 
