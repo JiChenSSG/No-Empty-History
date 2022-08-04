@@ -6,7 +6,7 @@ chrome.runtime.sendMessage({
     urlData = res.urlData
 })
 
-console.log()
+console.log(urlData)
 
 $("body").prepend("<div id='content'></div>");
 
@@ -64,11 +64,15 @@ $("#content-change-pic").css({
 })
 
 $("#content-change").on("click", function () {
+    var urlReg = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+    var url = urlReg.exec(window.location.href)[0]
+
     chrome.runtime.sendMessage({
         type: 'addUrl',
-        url: window.location.href
+        url: url
     }, res => {
-        console.log('success')
+        urlData = res.urlData
+        console.log(urlData)
     })
 })
 

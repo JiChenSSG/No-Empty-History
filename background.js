@@ -33,7 +33,7 @@ function deleteHistory(url) {
 function addUrl(url) {
     urlData.push(url)
 
-    storage.sync.set({ 'urlData': urlData })
+    storage.sync.set({ urlData: urlData })
 }
 
 // 获取url
@@ -41,12 +41,9 @@ function getUrl() {
     var res
 
     storage.sync.get(['urlData'], function (result) {
-        console.log(result)
         res = result.urlData
+        return res
     })
-
-    console.log(res)
-    return res
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -54,6 +51,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         sendResponse({ urlData: urlData })
     } else if (request.type == 'addUrl') {
         addUrl(request.url)
-        console.log(getUrl())
+        sendResponse({ urlData: urlData })
     }
 })
