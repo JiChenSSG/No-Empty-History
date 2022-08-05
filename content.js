@@ -269,7 +269,6 @@ $("#content-urls-content").css({
 
 function loadUrls() {
     $("#content-urls-content").empty();
-    console.log(urlData)
     var index = 0;
     for (var i in urlData) {
         urlStatus = urlData[i]
