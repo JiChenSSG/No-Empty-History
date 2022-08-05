@@ -32,21 +32,37 @@ $("#content").css({
     "z-index": "9999",
 })
 
-$("#content").mouseenter(function () {
-    $("#content").stop()
-    $("#content").animate({
-        "top": "100px",
-        "left": "0px"
-    }, 200)
-})
+var contentAnimation = false;
+function triggerContentAnimation() {
+    if (contentAnimation == true) {
+        $("#content").off("mouseenter")
+        $("#content").off("mouseleave")
 
-$("#content").mouseleave(function () {
-    $("#content").stop()
-    $("#content").animate({
-        "top": "100px",
-        "left": "-20px"
-    }, 200)
-})
+        contentAnimation = false
+    } else {
+        $("#content").on("mouseenter", function () {
+            $("#content").stop()
+            $("#content").animate({
+                "top": "100px",
+                "left": "0px"
+            }, 200)
+        })
+
+        $("#content").on("mouseleave", function () {
+            $("#content").stop()
+            $("#content").animate({
+                "top": "100px",
+                "left": "-20px"
+            }, 200)
+        })
+
+        contentAnimation = true
+    }
+}
+triggerContentAnimation()
+
+
+
 
 $("#content").append("<div id='content-change'></div>");
 
@@ -62,15 +78,20 @@ $("#content-change").css({
     "color": "white"
 })
 
-$("#content-change").hover(function () {
+$("#content-change").on("mouseenter", function () {
+    $("#content-change").stop(true)
     $("#content-change").animate({
         "opacity": "1"
     }, 200)
-}, function () {
+})
+
+$("#content-change").on("mouseleave", function () {
+    $("#content-change").stop(true)
     $("#content-change").animate({
         "opacity": "0.1"
     }, 200)
 })
+
 
 $("#content-change").append("<div id='content-change-pic'></div>");
 
@@ -131,15 +152,33 @@ $("#content-edit").css({
     "color": "white"
 })
 
-$("#content-edit").hover(function () {
-    $("#content-edit").animate({
-        "opacity": "1"
-    }, 200)
-}, function () {
-    $("#content-edit").animate({
-        "opacity": "0.1"
-    }, 200)
-})
+var editAnimation = false;
+function triggerEditAnimation() {
+    if (editAnimation == true) {
+        $("#content-edit").css({
+            "opacity": "1"
+        })
+
+        $("#content-edit").off("mouseenter")
+        $("#content-edit").off("mouseleave")
+        editAnimation = false
+    } else {
+        $("#content-edit").on("mouseenter", function () {
+            $("#content-edit").stop(true)
+            $("#content-edit").animate({
+                "opacity": "1"
+            }, 200)
+        }).on("mouseleave", function () {
+            $("#content-edit").stop(true)
+            $("#content-edit").animate({
+                "opacity": "0.1"
+            }, 200)
+        })
+
+        editAnimation = true
+    }
+}
+triggerEditAnimation()
 
 $("#content-edit").append("<div id='content-edit-pic'></div>");
 
@@ -151,6 +190,8 @@ $("#content-edit-pic").css({
 
 $("#content-edit").on("click", function () {
     loadUrls()
+    triggerContentAnimation()
+    triggerEditAnimation()
 
     if (visibility == false) {
         $("#content-urls").css({
