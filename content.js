@@ -27,17 +27,21 @@ $("#content").css({
     "position": "fixed",
     "top": "100px",
     "left": "-20px",
-    "width": "40px",
+    "width": "50px",
     "height": "50px",
     "z-index": "9999",
 })
 
-$("#content").hover(function () {
+$("#content").mouseenter(function () {
+    $("#content").stop()
     $("#content").animate({
         "top": "100px",
         "left": "0px"
     }, 200)
-}, function () {
+})
+
+$("#content").mouseleave(function () {
+    $("#content").stop()
     $("#content").animate({
         "top": "100px",
         "left": "-20px"
