@@ -1,6 +1,6 @@
 {
-    "name": "no empty history",
-    "description": "no empty history",
+    "name": "No Empty History——更好的隐私模式",
+    "description": "帮助用户更好的管理历史记录，针对特定网站自动删除历史浏览记录",
     "version": "1.0",
     "manifest_version": 3,
     "permissions": [
@@ -20,7 +20,6 @@
         }
     ],
     "action": {
-        "default_popup": "main.html",
         "default_icon": "icon.png"
     },
     "background": {
